@@ -49,7 +49,7 @@ public class LoginController extends BaseController {
 		HttpSession session = request.getSession(true);
 		LoginInfo loginInfo = (LoginInfo) session.getAttribute(LoginInfo.LOGIN_USER);
 		if (loginInfo == null) {
-			return "logon";
+			return "login";
 		}
 		// 加载用户所有的菜单权限
 		List<TreeModel> menuList = userService.getMenuAut(loginInfo);
@@ -114,7 +114,7 @@ public class LoginController extends BaseController {
 	 */
 	@RequestMapping("/forwardRelogin")
 	public String forwardRelogin(ModelMap map, HttpServletRequest request) throws Exception {
-		return "relogon";
+		return "relogin";
 	}
 	
 	/**
@@ -147,7 +147,7 @@ public class LoginController extends BaseController {
 	public String logout(ModelMap map, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession(true);
 		session.removeAttribute(LoginInfo.LOGIN_USER);
-		return "logon";
+		return "login";
 	}
 	
 	/**
