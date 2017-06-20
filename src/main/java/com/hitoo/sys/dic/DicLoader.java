@@ -25,7 +25,6 @@ import com.hitoo.sys.dic.service.DicService;
 /**
  * 注入ServletContext，需要tomcat容器
  * 为了不影响junit测试，把Component改为Controller，
- * qinchao   20130730
  */
 @Component
 @Scope("singleton")
