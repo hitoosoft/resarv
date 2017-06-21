@@ -1,7 +1,7 @@
 // 定义常量
 var hitooctrl = {};
 hitooctrl.dicList = "";
-hitooctrl.webprojectname = "/docms";
+hitooctrl.webprojectname = "/resarv";
 
 /*******************************************************************************
  * 初始化TAB页面的权限按钮
