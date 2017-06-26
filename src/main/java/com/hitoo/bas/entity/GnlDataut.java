@@ -12,9 +12,9 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.hitoo.frame.common.validator.MaxUtf8Length;
 
 @Entity
-@Table(name = "BAS_ROLE_GNL_DATAUT")
+@Table(name = "BAS_GNL_DATAUT")
 @SuppressWarnings("serial")
-public class RoleGnlDataut implements Serializable {
+public class GnlDataut implements Serializable {
 	// 对应关系ID
 	@Id
 	@Column(name = "PK")
