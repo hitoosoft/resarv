@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -14,32 +13,40 @@ import com.hitoo.bas.entity.Gnlarv;
 import com.hitoo.frame.base.BaseDAO;
 import com.hitoo.frame.enumdic.EnumSuperAdminType;
 import com.hitoo.frame.pub.model.PageInfo;
-import com.hitoo.sys.entity.Func;
 import com.hitoo.sys.entity.Role;
-import com.hitoo.sys.entity.UsrRole;
 
 @Component
 public class DatautDao  extends BaseDAO{
 	@SuppressWarnings("unchecked")
-	public List<Gnlarv> findGnls() throws Exception {
+	public List<Gnlarv> findGnls(String funcType) throws Exception {
 		StringBuffer hql = new StringBuffer();
 		hql.append("from Gnlarv");
+		if(StringUtils.isNotBlank(funcType)){
+			hql.append(" where funcTyp = :funcType");
+		}
 		Query query = getCurrentSession().createQuery(hql.toString());
+		if(StringUtils.isNotBlank(funcType)){
+			query.setString("funcType", funcType);
+		}
 		return query.list();
 	}
 	
-	//当用户不是管理员时调到该方法，暂时sys_role_gnl表
-	//未被创建，需要讨论。
 	@SuppressWarnings("unchecked")
-	public List<Gnlarv> findGnls(String userId) throws Exception {
+	public List<Gnlarv> findGnls(String funcType,String userId) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select distinct gnl.* ");
-		sql.append("   from bas_gnlarv gnl, sys_role_gnl rg, sys_usr_role ur ");
+		sql.append("   from bas_gnlarv gnl, bas_role_gnl_datdaut rg, sys_usr_role ur ");
 		sql.append("  where ur.usrid = :userId ");
 		sql.append("    and ur.roleid = rg.roleid ");
 		sql.append("    and rg.gnlarvid = gnl.gnlarvid ");
+		if(StringUtils.isNotBlank(funcType)){
+			sql.append(" and f.functyp = :funcType ");
+		}
 		SQLQuery query = getCurrentSession().createSQLQuery(sql.toString());
 		query.setString("userId", userId);
+		if(StringUtils.isNotBlank(funcType)){
+			query.setString("funcType", funcType);
+		}
 		query.addEntity("gnl", Gnlarv.class);
 		return query.list();
 	}
@@ -49,7 +56,7 @@ public class DatautDao  extends BaseDAO{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<String> queryDatautListByRoleID(String roleID) throws Exception {
-		String sqlStr="select srg.gnlarvid from  sys_role_gnl srg where srg.ROLEID=:roleID";
+		String sqlStr="select brgd.gnlarvid from  bas_role_gnl_datdaut brgd where brgd.ROLEID=:roleID";
 		SQLQuery query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
 		return query.list();

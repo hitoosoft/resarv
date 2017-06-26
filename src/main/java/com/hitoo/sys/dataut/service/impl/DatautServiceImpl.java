@@ -48,14 +48,13 @@ public class DatautServiceImpl extends BaseService implements DatautService {
 		//先获取全部权限树
 		List<Gnlarv> gnlList = null ;
 		if(user.isSuperAdmin()){
-			gnlList = datautDao.findGnls();
+			gnlList = datautDao.findGnls("");
 		}else{
-			gnlList = datautDao.findGnls(user.getUserId());
+			gnlList = datautDao.findGnls("",user.getUserId());
 		}
 		
 		//再决定哪些需要打勾
-//		List<String> checkList = datautDao.queryDatautListByRoleID(roleID);
-		List<String> checkList = null;
+ 		List<String> checkList = datautDao.queryDatautListByRoleID(roleID);
 		List<TreeModel> tList = TreeUtil.setTree(gnlList, checkList,frontPageCascadeFlag);
 		return TreeUtil.setTreeOpenLevel(tList, 2);
 	}
