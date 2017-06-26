@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -14,45 +15,41 @@ import com.hitoo.frame.common.validator.MaxUtf8Length;
 @Table(name = "BAS_ROLE_GNL_DATAUT")
 @SuppressWarnings("serial")
 public class RoleGnlDataut implements Serializable {
-	// PK
+	// 对应关系ID
+	@Id
 	@Column(name = "PK")
-	@MaxUtf8Length(value = 32, message = "PK")
-	private String Pk;
+	private String pk;
+
+	// 角色ID
+	@Column(name = "ROLEID")
+	private String roleID;
 
 	// 全宗ID
 	@Column(name = "GNLARVID")
-	@MaxUtf8Length(value = 32, message = "全宗ID")
-	@NotBlank
-	private String gnlArvId;
-
-	// 全宗名称
-	@Column(name = "ROLEID")
-	@MaxUtf8Length(value = 32, message = "角色ID")
-	@NotBlank
-	private String roleId;
+	private String gnlArvID;
 
 	public String getPk() {
-		return Pk;
+		return pk;
 	}
 
 	public void setPk(String pk) {
-		Pk = pk;
+		this.pk = pk;
 	}
 
-	public String getGnlArvId() {
-		return gnlArvId;
+	public String getRoleID() {
+		return roleID;
 	}
 
-	public void setGnlArvId(String gnlArvId) {
-		this.gnlArvId = gnlArvId;
+	public void setRoleID(String roleID) {
+		this.roleID = roleID;
 	}
 
-	public String getRoleId() {
-		return roleId;
+	public String getGnlArvID() {
+		return gnlArvID;
 	}
 
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
+	public void setGnlArvID(String gnlArvID) {
+		this.gnlArvID = gnlArvID;
 	}
-    
+	
 }
