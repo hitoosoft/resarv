@@ -139,7 +139,7 @@ function save(obj){
 	var urlparms = {};
 	urlparms.roleID = row.roleID;
 	urlparms.gnlIDs = gnlIDs;
-	hitooctrl.eamsOperPost("${app}/bas/role/saveRoleGnl.do",urlparms,function(){
+	hitooctrl.eamsOperPost("${app}/bas/dataut/saveRoleGnl.do",urlparms,function(){
 		$("#btnSave").linkbutton("enable");
 	},obj);
 }
