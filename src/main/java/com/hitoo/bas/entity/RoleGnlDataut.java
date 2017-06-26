@@ -1,18 +1,13 @@
 package com.hitoo.bas.entity;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.hitoo.frame.common.util.TreeBean;
 import com.hitoo.frame.common.validator.MaxUtf8Length;
 
 @Entity
