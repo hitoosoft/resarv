@@ -104,7 +104,7 @@ public class DatautServiceImpl extends BaseService implements DatautService {
 	@Override
 	public void delRoleDataut(String roleID) throws Exception {
 		//删除角色需要删除角色本身 和角色与用户的管理，角色与功能权限的管理
-		datautDao.delRoleDatautAndRelation(roleID, RoletypeFuncDefine.DATAUT.getRelativeTable());
+		datautDao.delRoleDatautAndRelation(roleID);
 	}
 	
 	@Override

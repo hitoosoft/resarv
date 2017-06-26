@@ -1,11 +1,11 @@
-package com.hitoo.sys.role;
+package com.hitoo.sys.enumdic;
 
 import java.util.EnumSet;
 
 /**
  * 功能权限表
  */
-public enum RoletypeFuncDefine{
+public enum EnumRoleType{
 	
 	FUNCAUT("FUNC","功能权限"),
 	DATAUT("DATAUT","档案数据权限");
@@ -19,7 +19,7 @@ public enum RoletypeFuncDefine{
 	 * 
 	 * @param code
 	 */
-	RoletypeFuncDefine(String code ,String label) {
+	EnumRoleType(String code ,String label) {
 		this.code = code;
 		this.label = label ;
 	}
@@ -33,7 +33,7 @@ public enum RoletypeFuncDefine{
 	}
 	
 	public static String getLabelByCode(String code) {
-		for(RoletypeFuncDefine s : EnumSet.allOf(RoletypeFuncDefine.class)){
+		for(EnumRoleType s : EnumSet.allOf(EnumRoleType.class)){
 	         if(s.code.equals(code))
 	        	 return s.label;
 	    }

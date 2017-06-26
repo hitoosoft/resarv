@@ -153,7 +153,7 @@ public class RoleDao  extends BaseDAO{
 	/**
 	 * 删除功能权限类型的角色及角色相关的表：角色与用户 ，角色与功能权限
 	 */
-	public void delRoleFncAndRelation(String roleID,String relativeTableName)throws Exception{
+	public void delRoleFncAndRelation(String roleID)throws Exception{
 		String sqlStr = " delete from sys_role where roleid = :roleID " ;
 		SQLQuery query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
@@ -164,7 +164,7 @@ public class RoleDao  extends BaseDAO{
 		query.setString("roleID", roleID);
 		query.executeUpdate();
 		
-		sqlStr = " delete from "+relativeTableName+" where roleid = :roleID " ;
+		sqlStr = " delete from sys_role_func where roleid = :roleID " ;
 		query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
 		query.executeUpdate();

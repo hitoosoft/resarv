@@ -20,6 +20,7 @@ import com.hitoo.frame.pub.model.TreeModel;
 import com.hitoo.sys.entity.Func;
 import com.hitoo.sys.entity.Role;
 import com.hitoo.sys.entity.RoleFunc;
+import com.hitoo.sys.enumdic.EnumRoleType;
 import com.hitoo.sys.role.RoletypeFuncDefine;
 import com.hitoo.sys.role.dao.RoleDao;
 import com.hitoo.sys.role.service.RoleService;
@@ -56,7 +57,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	 */
 	@Override
 	public List<Role> queryAllRoleOwnByCommonUsr(String usrID) throws Exception{
-		return roleDao.queryAllRoleOwnByCommonUsr(RoletypeFuncDefine.FUNCAUT.getCode(), usrID);
+		return roleDao.queryAllRoleOwnByCommonUsr(EnumRoleType.FUNCAUT.getCode(), usrID);
 	}
 	
 	/*
@@ -120,7 +121,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	@Override
 	public void delRoleFnc(String roleID) throws Exception {
 		//删除角色需要删除角色本身 和角色与用户的管理，角色与功能权限的管理
-		roleDao.delRoleFncAndRelation(roleID, RoletypeFuncDefine.FUNCAUT.getRelativeTable());
+		roleDao.delRoleFncAndRelation(roleID);
 	}
 
 	@Override

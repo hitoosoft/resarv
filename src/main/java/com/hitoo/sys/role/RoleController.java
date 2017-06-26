@@ -16,6 +16,7 @@ import com.hitoo.frame.pub.global.LoginInfo;
 import com.hitoo.frame.pub.model.PageInfo;
 import com.hitoo.frame.pub.model.TreeModel;
 import com.hitoo.sys.entity.Role;
+import com.hitoo.sys.enumdic.EnumRoleType;
 import com.hitoo.sys.role.service.RoleService;
 /**
  * 角色
@@ -34,7 +35,7 @@ public class RoleController extends BaseController {
 	@RequestMapping("/queryOwnedRoleDgByUser")
 	@ResponseBody
 	public PageInfo queryOwnedRoleDgByUser(HttpServletRequest request,String usrID) throws Exception{
-		return roleService.queryOwnedRoleDgByUser(usrID,RoletypeFuncDefine.FUNCAUT.getCode());
+		return roleService.queryOwnedRoleDgByUser(usrID,EnumRoleType.FUNCAUT.getCode());
 	}
 	
 	/*
@@ -45,32 +46,8 @@ public class RoleController extends BaseController {
 	@ResponseBody
 	public PageInfo queryNotOwnedRoleDgByUser(HttpServletRequest request,String usrID) throws Exception{
 		LoginInfo user = this.getLoginInfo(request);
-		return roleService.queryNotOwnedRoleDgByUser(user ,usrID,RoletypeFuncDefine.FUNCAUT.getCode());
-	}
-	
-	
-	/*
-	 * 查询用户拥有的角色列表
-	 * 直接在sys_usr_role 角色表中管理
-	 */
-	@RequestMapping("/queryOwnedRoleArvtypeDgByUser")
-	@ResponseBody
-	public PageInfo queryOwnedRoleArvtypeDgByUser(HttpServletRequest request,String usrID) throws Exception{
-		return roleService.queryOwnedRoleDgByUser(usrID,RoletypeFuncDefine.DATAUT_ARVTYPE.getCode());
-	}
-	
-	/*
-	 * 查询用户没有拥有的角色列表，但是可以作为可选
-	 * 直接在sys_usr_role 角色表中管理
-	 */
-	@RequestMapping("/queryNotOwnedRoleArvtypeDgByUser")
-	@ResponseBody
-	public PageInfo queryNotOwnedRoleArvtypeDgByUser(HttpServletRequest request,String usrID) throws Exception{
-		LoginInfo user = this.getLoginInfo(request);
-		return roleService.queryNotOwnedRoleDgByUser(user ,usrID,RoletypeFuncDefine.DATAUT_ARVTYPE.getCode());
-	}
-	
-	
+		return roleService.queryNotOwnedRoleDgByUser(user ,usrID,EnumRoleType.FUNCAUT.getCode());
+	}	
 	
 	/*
 	 * 分页角色列表，

@@ -135,7 +135,7 @@ public class DatautDao  extends BaseDAO{
 	/**
 	 * 删除数据权限类型的角色及角色相关的表：角色与用户 ，角色与数据权限
 	 */
-	public void delRoleDatautAndRelation(String roleID,String relativeTableName)throws Exception{
+	public void delRoleDatautAndRelation(String roleID)throws Exception{
 		String sqlStr = " delete from sys_role where roleid = :roleID " ;
 		SQLQuery query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
@@ -146,7 +146,7 @@ public class DatautDao  extends BaseDAO{
 		query.setString("roleID", roleID);
 		query.executeUpdate();
 		//删除数据权限关系表
-		sqlStr = " delete from "+relativeTableName+" where roleid = :roleID " ;
+		sqlStr = " delete from bas_gnl_dataut where roleid = :roleID " ;
 		query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
 		query.executeUpdate();
