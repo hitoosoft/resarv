@@ -65,6 +65,7 @@
 		<property name="packagesToScan" >
 			<list>
         		<value>com.hitoo.sys.entity</value>
+        		<value>com.hitoo.bas.entity</value>
     		</list>
 		</property>
 		
