@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hitoo.bas.entity.Gnlarv;
-import com.hitoo.bas.entity.RoleGnlDataut;
+import com.hitoo.bas.entity.GnlDataut;
 import com.hitoo.frame.base.BaseService;
 import com.hitoo.frame.base.BusinessException;
 import com.hitoo.frame.common.util.TreeUtil;
@@ -73,7 +73,7 @@ public class DatautServiceImpl extends BaseService implements DatautService {
 		for (String gnlID : frontGnlIDList) {
 			if(StringUtils.isNotBlank(gnlID)){
 				if(!oldgnlIDList.contains(gnlID)){
-					RoleGnlDataut rolegnl = new RoleGnlDataut();
+					GnlDataut rolegnl = new GnlDataut();
 					rolegnl.setPk(dBUtil.getCommonId());
 					rolegnl.setRoleID(roleID);
 					rolegnl.setGnlArvID(gnlID);

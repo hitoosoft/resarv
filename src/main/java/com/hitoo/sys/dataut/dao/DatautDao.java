@@ -35,10 +35,10 @@ public class DatautDao  extends BaseDAO{
 	public List<Gnlarv> findGnls(String funcType,String userId) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select distinct gnl.* ");
-		sql.append("   from bas_gnlarv gnl, bas_role_gnl_dataut rg, sys_usr_role ur ");
+		sql.append("   from bas_gnlarv gnl, bas_gnl_dataut bgd, sys_usr_role ur ");
 		sql.append("  where ur.usrid = :userId ");
 		sql.append("    and ur.roleid = rg.roleid ");
-		sql.append("    and rg.gnlarvid = gnl.gnlarvid ");
+		sql.append("    and bgd.gnlarvid = gnl.gnlarvid ");
 		if(StringUtils.isNotBlank(funcType)){
 			sql.append(" and f.functyp = :funcType ");
 		}
@@ -56,7 +56,7 @@ public class DatautDao  extends BaseDAO{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<String> queryDatautListByRoleID(String roleID) throws Exception {
-		String sqlStr="select brgd.gnlarvid from  bas_role_gnl_dataut brgd where brgd.ROLEID=:roleID";
+		String sqlStr="select bgd.gnlarvid from  bas_gnl_dataut bgd where bgd.ROLEID=:roleID";
 		SQLQuery query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
 		return query.list();
@@ -115,7 +115,7 @@ public class DatautDao  extends BaseDAO{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<String> queryGnlListByRoleID(String roleID) throws Exception {
-		String sqlStr="select rg.GNLARVID from  bas_role_gnl_dataut rg where rg.ROLEID=:roleID";
+		String sqlStr="select bgd.GNLARVID from  bas_gnl_dataut bgd where bgd.ROLEID=:roleID";
 		SQLQuery query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
 		return query.list();
@@ -125,7 +125,7 @@ public class DatautDao  extends BaseDAO{
 	 * 删除角色与数据权限关系
 	 */
 	public void deleteRoleGnlEntity(String roleID,String gnlID) throws Exception {
-		String sqlStr="delete from  bas_role_gnl_dataut  where ROLEID=:roleID and GNLARVID = :gnlID ";
+		String sqlStr="delete from  bas_gnl_dataut  where ROLEID=:roleID and GNLARVID = :gnlID ";
 		SQLQuery query = getCurrentSession().createSQLQuery(sqlStr);
 		query.setString("roleID", roleID);
 		query.setString("gnlID", gnlID);
