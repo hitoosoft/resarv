@@ -57,7 +57,7 @@ function initPage(){
 		striped:true,
 		fit:true,
 		toolbar:'#tb',
-		url: '${app}/sys/dataut/queryRoleDgOwnByUserWithPage.do',
+		url: '${app}/bas/dataut/queryRoleDgOwnByUserWithPage.do',
 		border:false,
 		singleSelect:true,
 		pagination:true,
@@ -80,7 +80,7 @@ function initPage(){
 
 function queryRole(){
 	var param = {};
-	$("#dgRole").datagrid("options").url=  '${app}/sys/dataut/queryRoleDgOwnByUserWithPage.do';
+	$("#dgRole").datagrid("options").url=  '${app}/bas/dataut/queryRoleDgOwnByUserWithPage.do';
 	$('#dgRole').datagrid("load",param);
 	$('#role_datautTree').tree("loadData",[]);
 }
@@ -104,7 +104,7 @@ function loadRoleFuncTree(roleID){
 	}
 	$('#role_datautTree').tree({
 		lines : true,
-		url:'${app}/sys/dataut/queryRoleDatautTree.do?roleID='+roleID+'&frontPageCascade='+frontPageCascade,
+		url:'${app}/bas/dataut/queryRoleDatautTree.do?roleID='+roleID+'&frontPageCascade='+frontPageCascade,
 		checkbox:true,	
 		cascadeCheck: cascadeFlag,
 		onBeforeLoad:function(node, param){ 
@@ -146,7 +146,7 @@ function save(obj){
 
 //新增或者修改角色按钮事件        
 function manageRoleFnc(t){
-	var url = '${app}/sys/dataut/forwardManagerole.do';
+	var url = '${app}/bas/dataut/forwardManagerole.do';
 	var width = 370;
 	var height = 200;
 	var title = "新增角色";
@@ -181,7 +181,7 @@ function delRoleFnc(){
 		if (!r) {
 			return;
 		}
-		var url='${app}/sys/dataut/delRoleDataut.do';
+		var url='${app}/bas/dataut/delRoleDataut.do';
 		var urlparms = {};
 		urlparms.roleID= row.roleID ;
 		hitooctrl.eamsOperPost(url, urlparms, function (){

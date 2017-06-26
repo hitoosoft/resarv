@@ -40,9 +40,9 @@
 		if(!valid){
 			return false;
 		}
-		var url = "${app}/sys/dataut/addRole.do";
+		var url = "${app}/bas/dataut/addRole.do";
 		if(editFlag=="T"){
-			url = "${app}/sys/dataut/editRole.do";
+			url = "${app}/bas/dataut/editRole.do";
 		}
 		var param = $("#edit_form").form("getData");
 		hitooctrl.eamsOperPost(url,param,function(paraMap){

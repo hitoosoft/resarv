@@ -1,23 +1,17 @@
 package com.hitoo.sys.dataut;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.hitoo.frame.base.BaseController;
 import com.hitoo.frame.pub.global.LoginInfo;
 import com.hitoo.frame.pub.model.PageInfo;
@@ -26,7 +20,7 @@ import com.hitoo.sys.dataut.service.DatautService;
 import com.hitoo.sys.entity.Role;
 
 @Controller
-@RequestMapping("/sys/dataut")
+@RequestMapping("/bas/dataut")
 public class DatautControl extends BaseController{
 	@Autowired
 	private DatautService datautService;
@@ -95,7 +89,7 @@ public class DatautControl extends BaseController{
 	 */
 	@RequestMapping("/forwardOrgdatautindex")
 	public String forwardRoleindex(HttpServletRequest request) throws Exception {
-		return "sys/dataut/orgdatautindex";
+		return "bas/dataut/orgdatautindex";
 	}
 	
 	/**
@@ -103,6 +97,6 @@ public class DatautControl extends BaseController{
 	 */
 	@RequestMapping("/forwardManagerole")
 	public String forwardManagerole(HttpServletRequest request) throws Exception {
-		return "sys/dataut/managerole";	
+		return "bas/dataut/managerole";	
 	}
 }
