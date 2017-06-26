@@ -19,6 +19,11 @@ public interface DatautService {
 	public List<TreeModel> queryRoleDatautTree(String roleID,LoginInfo user,boolean frontPageCascadeFlag) throws Exception ;
 	
 	/**
+	 * 为角色赋权保存
+	 */
+	public void  saveRoleGnl(String roleID ,String gnlIDs) throws Exception;
+	
+	/**
 	 * 功能权限类型角色-增删改
 	 */
 	public void addRole(Role role) throws Exception ;

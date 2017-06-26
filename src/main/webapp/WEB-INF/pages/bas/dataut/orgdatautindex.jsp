@@ -128,18 +128,18 @@ function save(obj){
 	if(row==null){
 		return ;
 	}
-	var funcIDs = '';
+	var gnlIDs = '';
 	var nodes = $('#role_datautTree').tree('getCheckedExt');//选择中的节点，包括实习节点
 	for ( var i = 0; i < nodes.length; i++) {
-		if (funcIDs != ''){
-			funcIDs += ',';
+		if (gnlIDs != ''){
+			gnlIDs += ',';
 		}
-		funcIDs += nodes[i].id;
+		gnlIDs += nodes[i].id;
 	}
 	var urlparms = {};
 	urlparms.roleID = row.roleID;
-	urlparms.funcIDs = funcIDs;
-	hitooctrl.eamsOperPost("${app}/sys/role/saveRoleFunc.do",urlparms,function(){
+	urlparms.gnlIDs = gnlIDs;
+	hitooctrl.eamsOperPost("${app}/bas/role/saveRoleGnl.do",urlparms,function(){
 		$("#btnSave").linkbutton("enable");
 	},obj);
 }

@@ -9,7 +9,7 @@ public enum RoletypeFuncDefine{
 	
 	FUNCAUT("FUNC","功能权限","SYS_ROLE_FUNC"),
 	DATAUT_ARVTYPE("ARVTYPE","档案分类权限","SYS_ROLE_ARVTYPE"),
-	DATAUT("DATAUT","档案数据权限","SYS_ROLE_DATAUT");
+	DATAUT("DATAUT","档案数据权限","BAS_ROLE_GNL_DATAUT");
 
 	// 编码 及名字
 	private final String code;

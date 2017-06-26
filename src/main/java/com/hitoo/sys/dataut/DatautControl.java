@@ -55,6 +55,16 @@ public class DatautControl extends BaseController{
 	}
 	
 	/*
+	 *对角色进行赋权保存
+	 */	
+	@RequestMapping("/saveRoleGnl")
+	@ResponseBody
+	public Map<String, Object> saveRoleGnl(HttpServletRequest request,String roleID ,String gnlIDs) throws Exception{
+		datautService.saveRoleGnl(roleID ,gnlIDs);
+		return this.writeSuccMsg("保存成功！");		
+	}
+	
+	/*
 	 *  新增角色--数据权限类型
 	 */ 
 	@RequestMapping("/addRole")

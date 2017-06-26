@@ -1,11 +1,14 @@
 package com.hitoo.sys.dataut.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hitoo.bas.entity.Gnlarv;
+import com.hitoo.bas.entity.RoleGnlDataut;
 import com.hitoo.frame.base.BaseService;
 import com.hitoo.frame.base.BusinessException;
 import com.hitoo.frame.common.util.TreeUtil;
@@ -57,6 +60,33 @@ public class DatautServiceImpl extends BaseService implements DatautService {
  		List<String> checkList = datautDao.queryDatautListByRoleID(roleID);
 		List<TreeModel> tList = TreeUtil.setTree(gnlList, checkList,frontPageCascadeFlag);
 		return TreeUtil.setTreeOpenLevel(tList, 2);
+	}
+	
+	/**
+	 * 为角色赋权保存,前台传过来的，把由gnlIDs组成的串分割成数组
+	 */
+	@Override
+	public void  saveRoleGnl(String roleID ,String gnlIDs) throws Exception{
+		String[] frontgnlIDArray = gnlIDs.split(",");
+		List<String> frontGnlIDList = Arrays.asList(frontgnlIDArray);
+		List<String> oldgnlIDList = datautDao.queryGnlListByRoleID(roleID);
+		for (String gnlID : frontGnlIDList) {
+			if(StringUtils.isNotBlank(gnlID)){
+				if(!oldgnlIDList.contains(gnlID)){
+					RoleGnlDataut rolegnl = new RoleGnlDataut();
+					rolegnl.setPk(dBUtil.getCommonId());
+					rolegnl.setRoleID(roleID);
+					rolegnl.setGnlArvID(gnlID);
+					commonDao.saveEntity(rolegnl);
+				}
+			}
+		}
+		//找出要删除的
+		for (String gnlID : oldgnlIDList) {
+			if(!frontGnlIDList.contains(gnlID)){
+				datautDao.deleteRoleGnlEntity(roleID, gnlID);
+			}
+		}	
 	}
 	
 	/**
