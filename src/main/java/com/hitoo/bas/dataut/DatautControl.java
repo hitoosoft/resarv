@@ -16,7 +16,7 @@ import com.hitoo.frame.base.BaseController;
 import com.hitoo.frame.pub.global.LoginInfo;
 import com.hitoo.frame.pub.model.PageInfo;
 import com.hitoo.frame.pub.model.TreeModel;
-import com.hitoo.sys.dataut.service.DatautService;
+import com.hitoo.bas.dataut.service.DatautService;
 import com.hitoo.sys.entity.Role;
 
 @Controller

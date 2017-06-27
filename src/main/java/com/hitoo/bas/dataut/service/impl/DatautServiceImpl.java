@@ -17,8 +17,8 @@ import com.hitoo.frame.pub.model.PageInfo;
 import com.hitoo.frame.pub.model.TreeModel;
 import com.hitoo.sys.entity.Role;
 import com.hitoo.sys.role.RoletypeFuncDefine;
-import com.hitoo.sys.dataut.dao.DatautDao;
-import com.hitoo.sys.dataut.service.DatautService;
+import com.hitoo.bas.dataut.dao.DatautDao;
+import com.hitoo.bas.dataut.service.DatautService;
 
 @Service
 public class DatautServiceImpl extends BaseService implements DatautService {
