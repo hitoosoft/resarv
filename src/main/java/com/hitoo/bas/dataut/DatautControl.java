@@ -1,4 +1,4 @@
-package com.hitoo.sys.dataut;
+package com.hitoo.bas.dataut;
 
 
 import java.util.List;
