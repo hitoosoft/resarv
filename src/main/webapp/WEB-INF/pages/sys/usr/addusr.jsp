@@ -14,13 +14,12 @@
       <input title="姓名" name="usrNam" type="text" class="easyui-validatebox" validType="maxUTFLength[100]"  required="true"/>
       <input id="usr_OrgComboTreeUsrAdd" title="所属机构" name="orgID" class="easyui-combotree" url="${app}/sys/org/queryAllOrgTree.do" 
       lines=true editable="false" required="true" />
-      <input id="usr_winAddUsr_usrTypCombobox" title="人员类别" syscode="USRTYP" name="usrTyp" class="easyui-combobox" panelHeight="auto" editable="false"  required="true"/>
       <input id="usr_winAddUsr_sexCombobox" title="性别" name="sex" syscode="SEX" class="easyui-combobox"  panelHeight="auto" editable="false"/>
       <input title="身份证号" name="identityNO" class="easyui-validatebox" validType="IDCard" onchange="formUsrAddIdentityNoOnChange()"/>
       <input title="联系电话" name="telNO"  class="easyui-validatebox" validType="maxUTFLength[20]" />
       <input id="usr_BirthDteUsrAdd" title="出生日期" name="birthDte" class="easyui-datebox"/>
       <input title="地址" name="addr" class="easyui-validatebox" validType="maxUTFLength[100]" />
-      <input title="电子邮件" name="email"  class="easyui-validatebox" validType="email"/>
+      <input title="电子邮件" name="email"  colspan="2" class="easyui-validatebox" validType="email"/>
       <textarea title="用户描述" name="descr" colspan="3" rows='5' style='width: 100%;'  class="easyui-validatebox" validType="maxUTFLength[1000]" ></textarea>
     </form>
   </div>

@@ -51,12 +51,6 @@ public class Usr implements Serializable{
 	@MaxUtf8Length(value=1, message="用户状态")
 	private String usrSta;
 	
-	//人员类别
-	@Column(name = "USRTYP")
-	@MaxUtf8Length(value=3, message="用户类别")
-	@NotBlank
-	private String usrTyp;
-	
 	//身份证号
 	@Column(name = "IDENTITYNO")
 	@MaxUtf8Length(value=18, message="身份证号")
@@ -202,14 +196,6 @@ public class Usr implements Serializable{
 
 	public void setUsrSta(String usrSta) {
 		this.usrSta = usrSta;
-	}
-
-	public String getUsrTyp() {
-		return usrTyp;
-	}
-
-	public void setUsrTyp(String usrTyp) {
-		this.usrTyp = usrTyp;
 	}
 
 	public String getOrgNam() {

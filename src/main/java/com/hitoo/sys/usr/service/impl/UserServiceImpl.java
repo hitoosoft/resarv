@@ -290,7 +290,6 @@ public class UserServiceImpl extends BaseService implements UserService {
 		logonUser.setUserId(user.getUsrID());
 		logonUser.setUserCod(user.getUsrCod());
 		logonUser.setUserNam(user.getUsrNam());
-		logonUser.setUserType(user.getUsrTyp());
 //		logonUser.setPassword(user.getUsrPwd());
 		logonUser.setOrgId(user.getOrgID());
 		boolean ownAllDatAutFalg=false;
