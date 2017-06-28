@@ -25,12 +25,7 @@ public interface CellService {
 	 * 1.根据设备ID、排数查单元格
 	 * 2.查询列的最大的单元格数量
 	 */
-	public Map<String, Object> queryCellByEqptIDAndPartNO(String eqptID, Integer partNO,String arvTypeID) throws Exception ;
-	
-	/**
-	 * 保存库房单元格和档案分类的关系
-	 */
-	public void saveOrUpdateCellArvTypeInPart(String arvTypeID, String selectedCellIDs, String eqptID, String partNO) throws Exception ;
+	public Map<String, Object> queryCellByEqptIDAndPartNO(String eqptID, Integer partNO) throws Exception ;
 	
 	/**
 	 * 更新格子的容量

@@ -38,7 +38,6 @@
 		       
 		        	<!-- 档案的库房位置分配 -->
 		         	<c:if test="${param.allocateCell=='1' || allocateCell == '1'}">
-		              	<a show="true" class="easyui-linkbutton" onClick="btnArvTypeIDCellIDSave();" icon="icon-ok" plain="true">保存位置分配</a>
 		              	<a show="true" class="easyui-linkbutton" onClick="btnResetVolumn();" icon="icon-page" plain="true">设定格容量</a>
 		         	</c:if>
 	        	</div>
@@ -145,63 +144,9 @@
 
 	 	paraMap.eqptID = eqptID;
 	 	paraMap.partNO = partNO;
-	 	paraMap.arvTypeID="${param.arvTypeID}";//指定库房位置的档案分类
 	 	hitooctrl.eamsOperPost(url,paraMap,function(backMap){
 		 	$('#repoCellDiv').html(backMap.celltableHtml);
 		});
- 	}
- 
- 	//保存库房单元格与档案分类的关系
- 	function cellrowspan_click(obj){
-	  	var vals=obj.value;
-	  	var ary_vals=vals.split(",");
-	 	if($(obj).attr("checked")){
-         	$('input:checkbox[name="red"]').each(function(){
-        	 	if(!$(this).attr("checked")){
-        		 	if(vals.indexOf($(this).attr("value"))>=0){
-        			 	$(this).attr("checked", true);
-        		 	}
-        	 	}
-        	});
-		}else{
-	    	$('input:checkbox[name="red"]').each(function(){
-	        	if($(this).attr("checked")){
-	        		if(vals.indexOf($(this).attr("value"))>=0){
-	        			$(this).removeAttr("checked");
-	        		}
-	        	}
-	        });
-	        $(obj).removeAttr("checked");
-	    }
- 	}
-
- 	function btnArvTypeIDCellIDSave(){
-	 	var selectedCellIDs="";
-	 	$('input:checkbox[name="red"]').each(function(){
-    	 	if($(this).attr("checked")){
-    		 	if(selectedCellIDs.length>0){
-    			 	selectedCellIDs += ",";
-    		 	}
-    		 	selectedCellIDs += $(this).attr("value");
-    	 	}
-    	});
-	 	
-	 	var curNode = $("#repoDefAndEqptTree").tree('getSelected');
-	 	if(curNode==null){
-		 	return;
-	 	}
-     	
-     	var curPart = $("#cellReptIDAndPartNO").tree('getSelected');
-	 	if(curPart==null){
-		 	return;
-	 	}
-	 	
-	 	var paraMap = {};
-	 	paraMap.arvTypeID="${param.arvTypeID}";//指定库房位置的档案分类
-	 	paraMap.selectedCellIDs = selectedCellIDs;
-	 	paraMap.eqptID = curNode.id;
-	 	paraMap.partNO = curPart.id;
-	 	hitooctrl.eamsOperPost("${app}/repo/cell/saveOrUpdateCellArvTypeInPart.do",paraMap,function(){});
  	}
  
 	function btnResetVolumn(){

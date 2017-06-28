@@ -88,18 +88,6 @@ public class CellDao extends CommonDao {
 		}
 	}
 	
-	/**
-	 * 查询某个分类已经分配的库房单元格
-	 */
-	@SuppressWarnings("unchecked")
-	public List<String> queryCellByArvTypeID(String arvTypeID)throws Exception {
-		String sql=" select distinct cellid from REPO_CELL_ARVTYPE where arvtypeid = :arvTypeID";
-		SQLQuery query = getCurrentSession().createSQLQuery(sql);
-		query.setString("arvTypeID", arvTypeID);
-		query.addEntity(CellArvtype.class);
-		return query.list();
-	}
-	
 	@SuppressWarnings("unchecked")
 	public String queryArvTypeIDRepoDescr(String arvTypeID)throws Exception {
 		String sql=" select reponam||'---'||eqptnam||'---'||partno||'排'from ( "
@@ -126,11 +114,8 @@ public class CellDao extends CommonDao {
 	/**
 	 * 构建可视化库房的单元格组成，通过checkbox或者radiobox
 	 */
-	public Map<String, Object> BuildCellByHtmlByEqptIDAndPartNO(String eqptID, Integer partNO, String arvTypeID) throws Exception {
+	public Map<String, Object> BuildCellByHtmlByEqptIDAndPartNO(String eqptID, Integer partNO) throws Exception {
 		List<String> checkedCellIDList = null;
-		if(StringUtils.isNotBlank(arvTypeID)){
-			checkedCellIDList = queryCellByArvTypeID(arvTypeID);
-		}
 		Map<String, Object> paraMap = new HashMap<String, Object>();
 		List<Cell> cellList = this.queryCellListByEqptIDAndPartNO(eqptID, partNO);
 		Map<Integer ,List<Cell>> floorCellMap = new HashMap<Integer ,List<Cell>>();
@@ -220,12 +205,6 @@ public class CellDao extends CommonDao {
 			checkboxFirstRow += "</tr>";
 			sb_html.insert(0, checkboxFirstRow);
 			sb_html.insert(0, "<table style='border:solid #66CDAA; border-width:1px 0px 0px 1px;' >");
-		}
-		if(StringUtils.isNotBlank(arvTypeID)){
-			String allocateDescr= this.queryArvTypeIDRepoDescr(arvTypeID);
-			if(StringUtils.isNotBlank(allocateDescr)){
-				sb_html.append("<br><span style='color:blue;size:10px;'>已分配的库房架位：<br>"+allocateDescr+"</span>");
-			}
 		}
 		paraMap.put("celltableHtml", sb_html.toString());
 		return paraMap;
@@ -446,19 +425,6 @@ public class CellDao extends CommonDao {
 			return arvVolInfo.get(0);
 		}
 		return null;
-	}
-
-	/**
-	 * 删除库房单元格和档案分类的关系
-	 */
-	public void deleteCellArvType(String arvTypeID, String eqptID, String partNO) throws Exception {
-		String sql = "delete from REPO_CELL_ARVTYPE where ARVTYPEID = :arvTypeID " +
-				"and CELLID in(select CELLID from REPO_CELL where EQPTID = :eqptID and PARTNO = :partNO)";
-		SQLQuery query = getCurrentSession().createSQLQuery(sql);
-		query.setString("arvTypeID", arvTypeID);
-		query.setString("eqptID", eqptID);
-		query.setInteger("partNO", Integer.parseInt(partNO));
-		query.executeUpdate();
 	}
 		
 	@SuppressWarnings("unchecked")

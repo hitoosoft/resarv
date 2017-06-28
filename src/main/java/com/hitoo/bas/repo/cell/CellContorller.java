@@ -61,32 +61,14 @@ public class CellContorller extends BaseController {
 	 */
 	@RequestMapping("/queryCellByEqptIDAndPartNO")
 	@ResponseBody
-	public Map<String, Object> queryCellByEqptIDAndPartNO(HttpServletRequest request, String eqptID, Integer partNO, String arvTypeID) throws Exception {
+	public Map<String, Object> queryCellByEqptIDAndPartNO(HttpServletRequest request, String eqptID, Integer partNO) throws Exception {
 		if(StringUtils.isBlank(eqptID)){
 			throw new BusinessException("设备ID不能为空！");
 		}
 		if(partNO==null || partNO<=0){
 			throw new BusinessException("单元格排号不能为空，并且必须大于零！");
 		}
-		return this.writeSuccMsg("", cellService.queryCellByEqptIDAndPartNO(eqptID, partNO, arvTypeID));
-	}
-	
-	/**
-	 * 保存一排的库房位置分配
-	 * 如果
-	 */
-	@RequestMapping("/saveOrUpdateCellArvTypeInPart")
-	@ResponseBody
-	public Map<String, Object> saveOrUpdateCellArvTypeInPart(HttpServletRequest request) throws Exception {
-		String arvTypeID = request.getParameter("arvTypeID");
-		String selectedCellIDs = request.getParameter("selectedCellIDs");
-		String eqptID = request.getParameter("eqptID");
-		String partNO = request.getParameter("partNO");
-		if(StringUtils.isBlank(arvTypeID)){
-			throw new BusinessException("档案分类ID不能为空！");
-		}
-		cellService.saveOrUpdateCellArvTypeInPart(arvTypeID, selectedCellIDs, eqptID, partNO);
-		return this.writeSuccMsg("分配位置完成！");
+		return this.writeSuccMsg("", cellService.queryCellByEqptIDAndPartNO(eqptID, partNO));
 	}
 	
 	/**

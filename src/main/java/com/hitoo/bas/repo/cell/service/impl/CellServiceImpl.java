@@ -42,29 +42,6 @@ public class CellServiceImpl extends BaseService implements CellService {
 	}
 	
 	/**
-	 * 保存库房单元格和档案分类的关系
-	 */
-	@Override
-	public void saveOrUpdateCellArvTypeInPart(String arvTypeID, String selectedCellIDs, String eqptID, String partNO) throws Exception {
-		List<String> cellIDList = null;
-		if(StringUtils.isNotBlank(selectedCellIDs)){
-			cellIDList = Arrays.asList(selectedCellIDs.split(","));
-		}else{
-			cellIDList = new ArrayList<String>();
-		}
-		cellDao.deleteCellArvType(arvTypeID, eqptID, partNO);
-		for(String cellID : cellIDList){
-			if(StringUtils.isNotBlank(cellID)){
-				CellArvtype cellArvtype = new CellArvtype();
-				cellArvtype.setCellID(cellID);
-				cellArvtype.setArvTypeID(arvTypeID);
-				cellArvtype.setPk(dBUtil.getCommonId());
-				commonDao.saveEntity(cellArvtype);
-			}
-		}
-	}
-	
-	/**
 	 * 更新格子的容量
 	 */
 	public void updateCellVolumn(String selectedCellIDs, Integer totalNum) throws Exception {
@@ -255,8 +232,8 @@ public class CellServiceImpl extends BaseService implements CellService {
 	 * 2.查询列的最大的单元格数量
 	 */
 	@Override
-	public Map<String, Object> queryCellByEqptIDAndPartNO(String eqptID, Integer partNO,String arvTypeID) throws Exception {
-		return cellDao.BuildCellByHtmlByEqptIDAndPartNO(eqptID, partNO,arvTypeID);
+	public Map<String, Object> queryCellByEqptIDAndPartNO(String eqptID, Integer partNO) throws Exception {
+		return cellDao.BuildCellByHtmlByEqptIDAndPartNO(eqptID, partNO);
 	}
 	
 	/**
