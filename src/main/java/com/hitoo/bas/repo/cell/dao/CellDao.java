@@ -20,39 +20,14 @@ import com.hitoo.enumdic.EnumOrganizeModel;
 import com.hitoo.bas.entity.Cell;
 import com.hitoo.bas.entity.CellNo;
 import com.hitoo.bas.entity.Eqpt;
-import com.hitoo.bas.entity.Gnlarv;
 import com.hitoo.bas.entity.Repo;
-import com.hitoo.bas.entity.CellArvtype;
 import com.hitoo.bas.repo.cell.EqptPart;
 import com.hitoo.frame.base.CommonDao;
 import com.hitoo.frame.common.util.BeanUtil;
 import com.hitoo.frame.pub.model.PageInfo;
-import com.hitoo.frame.base.BusinessException;
 
 @Component
 public class CellDao extends CommonDao {
-	
-	/**
-	 * 查询某个分类未使用的单元格
-	 */
-	@SuppressWarnings("unchecked")
-	public Cell getOneUnusedCellByArvTypeID(String arvTypeID)throws Exception {
-		String sql=" select cell.*    from REPO_CELL_ARVTYPE  rel,REPO_CELL cell  "
-				+ " where 1=1  "
-				+ " and rel.cellid = cell.cellid"
-				+ " and  cell.totalnum >0   "
-				+ " and ( cell.usednum is null  or  (cell.totalnum - cell.usednum) >0 )"
-				+ " and rel.arvtypeid = :arvTypeID"
-				+ " order by cell.eqptid,cell.partno,cell.levno,cell.cellno ";
-		SQLQuery query = getCurrentSession().createSQLQuery(sql);
-		query.setString("arvTypeID", arvTypeID);
-		List<Cell> unUsedCells = query.addEntity(Cell.class).list();
-		if(unUsedCells==null||unUsedCells.size()<=0){
-			throw new BusinessException("无可用库房单元格，请联系管理员分配！");
-		}
-		Cell oneCell = unUsedCells.get(0);
-		return oneCell;
-	}
 	
 	/**
 	 * 查询某个分类未使用的单元格
