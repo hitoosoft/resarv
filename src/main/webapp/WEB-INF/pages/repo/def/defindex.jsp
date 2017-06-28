@@ -239,7 +239,7 @@ $(document).ready(function() {
   		 return;
   	   }
       hitooctrl.eamsOperPost("${app}/repo/cell/queryCellByEqptID.do",{eqptID:row.eqptID},function(paraMap){
-        if(paraMap!=null&&paraMap.Cell!=null){
+    	  if(paraMap!=null&&paraMap.Cell!=null){
           $.messager.alert("提示", "该设备已经划分了单元格，不能智能划分！", "info");
           return;
         }
