@@ -66,6 +66,7 @@
 			<list>
         		<value>com.hitoo.sys.entity</value>
         		<value>com.hitoo.bas.entity</value>
+        		<value>com.hitoo.entity.arv</value>
     		</list>
 		</property>
 		

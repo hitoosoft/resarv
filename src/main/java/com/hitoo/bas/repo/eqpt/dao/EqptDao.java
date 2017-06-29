@@ -90,6 +90,7 @@ public class EqptDao extends BaseDAO {
 				+ "a.eqptID = b.eqptID and b.cellID = c.cellID and a.eqptID = :eqptID ";
 		SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sqlStr);
 		sqlQuery.setString("eqptID", eqptID);
+		sqlQuery.addEntity(ArvBasInfo.class);
 		List<ArvBasInfo> arvBasInfo = sqlQuery.list();
 		if(arvBasInfo!=null&&arvBasInfo.size()>0){
 			return arvBasInfo.get(0);

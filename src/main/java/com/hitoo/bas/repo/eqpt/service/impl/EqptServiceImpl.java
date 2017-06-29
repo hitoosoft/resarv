@@ -149,7 +149,7 @@ public class EqptServiceImpl extends BaseService implements EqptService {
 		
 		//删除前验证设备下单元格是否存有档案
 		if(eqptDao.queryFirstArvtypeUsingCellByEqptID(eqptID)!=null){
-			throw new BusinessException("该设备单元格中存有档案分类，不能删除！");
+			throw new BusinessException("该设备单元格中存有档案，不能删除！");
 		}
 		//删除设备要同时删除单元格
 		eqptDao.deleteCellByEqptID(eqptID);
