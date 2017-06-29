@@ -9,7 +9,7 @@ import com.hitoo.frame.pub.model.PageInfo;
 import com.hitoo.frame.pub.model.TreeModel;
 import com.hitoo.sys.entity.Usr;
 
-public interface UserService {
+public interface UsrService {
 	
 
 	/**

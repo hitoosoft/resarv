@@ -19,7 +19,7 @@ import com.hitoo.sys.entity.Usr;
 import com.hitoo.sys.entity.UsrRole;
 
 @Component
-public class UserDao extends BaseDAO {
+public class UsrDao extends BaseDAO {
 	/**
 	 * 某个用户与角色关系
 	 */

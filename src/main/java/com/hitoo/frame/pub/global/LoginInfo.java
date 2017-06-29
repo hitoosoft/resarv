@@ -15,9 +15,9 @@ public class LoginInfo implements Serializable {
 	 */
 	public static final String LOGIN_USER = "login_user";
 	
-	private String userId;
-	private String userCod;
-	private String userNam;
+	private String usrId;
+	private String usrCod;
+	private String usrNam;
 	private String password;
 	private String email;
 	private String ip;
@@ -33,23 +33,23 @@ public class LoginInfo implements Serializable {
 	private Set<String> urlList;//用户的功能权限url列表
 	private Map<String, Set<String>> btnMap ;//按钮权限
 	
-	public String getUserId() {
-		return userId;
+	public String getUsrId() {
+		return usrId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
 	}
-	public String getUserCod() {
-		return userCod;
+	public String getUsrCod() {
+		return usrCod;
 	}
-	public void setUserCod(String userCod) {
-		this.userCod = userCod;
+	public void setUsrCod(String usrCod) {
+		this.usrCod = usrCod;
 	}
-	public String getUserNam() {
-		return userNam;
+	public String getUsrNam() {
+		return usrNam;
 	}
-	public void setUserNam(String userNam) {
-		this.userNam = userNam;
+	public void setUsrNam(String usrNam) {
+		this.usrNam = usrNam;
 	}
 	public String getPassword() {
 		return password;

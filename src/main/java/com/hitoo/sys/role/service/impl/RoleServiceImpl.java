@@ -69,7 +69,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		if(user.isSuperAdmin()){
 			allRoles = roleDao.queryAllRoleExcludeSuperRole( roleType);
 		}else{
-			allRoles = roleDao.queryAllRoleOwnByCommonUsr(roleType, user.getUserId());
+			allRoles = roleDao.queryAllRoleOwnByCommonUsr(roleType, user.getUsrId());
 		}
 		List<Role> ownedRoles = roleDao.queryAllRoleOwnByCommonUsr( roleType, usrID);
 		Map<String ,Role> allRolesMap = new HashMap<String ,Role>();
@@ -102,7 +102,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		if(user.isSuperAdmin()){
 			return roleDao.queryAllRoleExcludeSuperRoleWithPage(pi, RoletypeFuncDefine.FUNCAUT.getCode());
 		}else{
-			return roleDao.queryAllRoleOwnByCommonUsrWithPage(pi, RoletypeFuncDefine.FUNCAUT.getCode(), user.getUserId());
+			return roleDao.queryAllRoleOwnByCommonUsrWithPage(pi, RoletypeFuncDefine.FUNCAUT.getCode(), user.getUsrId());
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		if(user.isSuperAdmin()){
 			funcList = roleDao.findFuncs("");
 		}else{
-			funcList = roleDao.findFuncs("", user.getUserId());
+			funcList = roleDao.findFuncs("", user.getUsrId());
 		}
 		
 		//再决定哪些需要打勾

@@ -25,14 +25,14 @@ import com.hitoo.sys.entity.Usr;
 import com.hitoo.sys.entity.UsrRole;
 import com.hitoo.sys.enumdic.EnumUsrSta;
 import com.hitoo.sys.role.dao.RoleDao;
-import com.hitoo.sys.usr.dao.UserDao;
-import com.hitoo.sys.usr.service.UserService;
+import com.hitoo.sys.usr.dao.UsrDao;
+import com.hitoo.sys.usr.service.UsrService;
 
 @Service
-public class UserServiceImpl extends BaseService implements UserService {
+public class UsrServiceImpl extends BaseService implements UsrService {
 	
 	@Autowired
-	private UserDao userDao;
+	private UsrDao userDao;
 	@Autowired
 	private RoleDao roleDao ;
 	@Autowired
@@ -108,7 +108,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 		if(loginInfo.isSuperAdmin()){
 			list = roleDao.findFuncs(EnumFuncAutType.MENUAUT.getCode());
 		}else{
-			list = roleDao.findFuncs(EnumFuncAutType.MENUAUT.getCode(), loginInfo.getUserId());
+			list = roleDao.findFuncs(EnumFuncAutType.MENUAUT.getCode(), loginInfo.getUsrId());
 		}
 		return TreeUtil.setTree(list);
 	}
@@ -119,7 +119,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 		if(loginInfo.isSuperAdmin()){
 			list = roleDao.findFuncs(null);
 		}else{
-			list = roleDao.findFuncs(null, loginInfo.getUserId());
+			list = roleDao.findFuncs(null, loginInfo.getUsrId());
 		}
 		Map<String, Set<String>> btnMap = new HashMap<String, Set<String>>();
 		for(Func func : list) {
@@ -139,7 +139,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 		if(loginInfo.isSuperAdmin()){
 			list = roleDao.findFuncs(null);
 		}else{
-			list = roleDao.findFuncs(null, loginInfo.getUserId());
+			list = roleDao.findFuncs(null, loginInfo.getUsrId());
 		}
 		Set<String> urls = new HashSet<String>();
 		for(Func func : list){
@@ -287,9 +287,9 @@ public class UserServiceImpl extends BaseService implements UserService {
 			throw new BusinessException("查询用户信息出错:用户[" + usrCod + "]非正常状态，请联系管理员！");
 		}
 		LoginInfo logonUser = new LoginInfo();
-		logonUser.setUserId(user.getUsrID());
-		logonUser.setUserCod(user.getUsrCod());
-		logonUser.setUserNam(user.getUsrNam());
+		logonUser.setUsrId(user.getUsrID());
+		logonUser.setUsrCod(user.getUsrCod());
+		logonUser.setUsrNam(user.getUsrNam());
 //		logonUser.setPassword(user.getUsrPwd());
 		logonUser.setOrgId(user.getOrgID());
 		boolean ownAllDatAutFalg=false;

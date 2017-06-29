@@ -23,13 +23,13 @@ import com.hitoo.frame.pub.global.LoginInfo;
 import com.hitoo.frame.pub.model.TreeModel;
 import com.hitoo.sys.entity.Role;
 import com.hitoo.sys.role.service.RoleService;
-import com.hitoo.sys.usr.service.UserService;
+import com.hitoo.sys.usr.service.UsrService;
 
 @Controller
 public class LoginController extends BaseController {
 	
 	@Autowired
-	private UserService userService;
+	private UsrService userService;
 	@Autowired
 	private RoleService roleService;
 	
@@ -74,7 +74,7 @@ public class LoginController extends BaseController {
 		LoginInfo loginInfo  = (LoginInfo) session.getAttribute(LoginInfo.LOGIN_USER);
 
 		if (loginInfo != null) {
-			if (!usrCod.equals(loginInfo.getUserCod())) {
+			if (!usrCod.equals(loginInfo.getUsrCod())) {
 				throw new BusinessException("已经登录了一个其他用户，请选退出再登录该用户！");
 			}
 		}
@@ -84,7 +84,7 @@ public class LoginController extends BaseController {
 		}
 		loginInfo.setIp(request.getRemoteAddr());
 		//将用户的角色保存在logininfo中,排除超级角色标志。。
-		List<Role> roleList =  roleService.queryAllRoleOwnByCommonUsr(loginInfo.getUserId());
+		List<Role> roleList =  roleService.queryAllRoleOwnByCommonUsr(loginInfo.getUsrId());
 		List<String> roleIDs=new ArrayList<String>();
 		for(Role role:roleList){
 			roleIDs.add(role.getRoleID());
@@ -92,7 +92,7 @@ public class LoginController extends BaseController {
 		loginInfo.setRoleIDList(roleIDs);
 		
 		//检查用户是否超级用户
-		loginInfo.setSuperAdmin(roleService.ownSuperRole(loginInfo.getUserId()));
+		loginInfo.setSuperAdmin(roleService.ownSuperRole(loginInfo.getUsrId()));
 		
 		//将用户的权限列表保存在logininfo中供权限拦截器使用
 		Set<String> urlList = userService.getUsrFuncUrls(loginInfo);

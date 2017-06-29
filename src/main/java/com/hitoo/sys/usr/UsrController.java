@@ -20,14 +20,14 @@ import com.hitoo.frame.pub.global.LoginInfo;
 import com.hitoo.frame.pub.model.PageInfo;
 import com.hitoo.frame.pub.model.TreeModel;
 import com.hitoo.sys.entity.Usr;
-import com.hitoo.sys.usr.service.UserService;
+import com.hitoo.sys.usr.service.UsrService;
 
 @Controller
 @RequestMapping("/sys/usr")
-public class UserController extends BaseController {
+public class UsrController extends BaseController {
 
 	@Autowired
-	private UserService userService ;
+	private UsrService userService ;
 	
 	/**
 	 * 获取用户的功能权限树
@@ -131,7 +131,7 @@ public class UserController extends BaseController {
 		}
 		//获取当前登入用户
 		LoginInfo loginInfo = getLoginInfo(request);
-		String usrCod = loginInfo.getUserCod();
+		String usrCod = loginInfo.getUsrCod();
 		userService.modifyPwd(usrCod, oldPwd, newPwd, newPwdSure);
 		return this.writeSuccMsg("修改成功！");
 	}
@@ -207,7 +207,7 @@ public class UserController extends BaseController {
 	public String forwardModifyInfo(HttpServletRequest request, ModelMap map) throws Exception {
 		//获取当前用户对象
 		LoginInfo loginInfo = getLoginInfo(request);
-		map.put("usrID", loginInfo.getUserId());
+		map.put("usrID", loginInfo.getUsrId());
 		return "sys/usr/modifyInfo";	
 	}
 	

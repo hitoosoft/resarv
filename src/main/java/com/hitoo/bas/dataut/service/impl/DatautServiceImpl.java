@@ -36,7 +36,7 @@ public class DatautServiceImpl extends BaseService implements DatautService {
 		if(user.isSuperAdmin()){
 			return datautDao.queryAllRoleExcludeSuperRoleWithPage(pi, RoletypeFuncDefine.DATAUT.getCode());
 		}else{
-			return datautDao.queryAllRoleOwnByCommonUsrWithPage(pi, RoletypeFuncDefine.DATAUT.getCode(), user.getUserId());
+			return datautDao.queryAllRoleOwnByCommonUsrWithPage(pi, RoletypeFuncDefine.DATAUT.getCode(), user.getUsrId());
 		}
 	}
 	
@@ -53,7 +53,7 @@ public class DatautServiceImpl extends BaseService implements DatautService {
 		if(user.isSuperAdmin()){
 			gnlList = datautDao.findGnls("");
 		}else{
-			gnlList = datautDao.findGnls("",user.getUserId());
+			gnlList = datautDao.findGnls("",user.getUsrId());
 		}
 		
 		//再决定哪些需要打勾
