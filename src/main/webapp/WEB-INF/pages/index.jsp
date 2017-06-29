@@ -21,7 +21,7 @@
 					</c:forEach>
 				</td>
 				<td style="width:200px;">
-					<a class="usr-icon">${login_user.userNam}</a>
+					<a class="usr-icon">${login_user.usrNam}</a>
 					<a href="${app }/logout.do" class="logout-icon">退出</a>
 				</td>
 			</tr>
@@ -97,7 +97,7 @@
 <script type="text/javascript">
 	var hitoodictionary = ${cacheEnumData};
 	var hitoo = {};
-	hitoo.globalUsrCod = "${sessionScope.login_user.userCod}"; 
+	hitoo.globalUsrCod = "${sessionScope.login_user.usrCod}"; 
 	
 	var tabMap = {};
 	$(function () {
